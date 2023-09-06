@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoolTrackerBackEnd", "PoolTrackerBackEnd.csproj", "{BD4376C9-C07C-4D55-BDF8-B6DE7FC2F8E2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD4376C9-C07C-4D55-BDF8-B6DE7FC2F8E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD4376C9-C07C-4D55-BDF8-B6DE7FC2F8E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD4376C9-C07C-4D55-BDF8-B6DE7FC2F8E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD4376C9-C07C-4D55-BDF8-B6DE7FC2F8E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {23E830BD-C082-4C60-B2F0-24FCCF9E91AB}
+	EndGlobalSection
+EndGlobal
