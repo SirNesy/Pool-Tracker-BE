@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "C5/cW0QdebVVjDN714zUF01v6fr8oLrlesrJbghTlYnFoEt0iNz3niiOxf+BUYZ3FRGLxZgW6jUmlLue/GQ+Dg==",
+  "dgSpecHash": "M7NrLOpbf5A/npe/FVh+1G+elXWNLb8TDaBGif+WDiIWSTROajgdFz8YCOkktA6b+1qA8lROsnyAByUrbyo2iw==",
   "success": true,
   "projectFilePath": "C:\\Users\\OnesiUmoize\\OneDrive - The Test Factory\\Desktop\\project\\BackendPoolTracker\\PoolTrackerBackEnd\\PoolTrackerBackEnd.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,9 @@
     "C:\\Users\\OnesiUmoize\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.1\\microsoft.data.sqlclient.5.1.1.nupkg.sha512",
     "C:\\Users\\OnesiUmoize\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.1.0\\microsoft.data.sqlclient.sni.runtime.5.1.0.nupkg.sha512",
     "C:\\Users\\OnesiUmoize\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\OnesiUmoize\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
+    "C:\\Users\\OnesiUmoize\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\OnesiUmoize\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\OnesiUmoize\\.nuget\\packages\\microsoft.identity.client\\4.47.2\\microsoft.identity.client.4.47.2.nupkg.sha512",
     "C:\\Users\\OnesiUmoize\\.nuget\\packages\\microsoft.identity.client.extensions.msal\\2.19.3\\microsoft.identity.client.extensions.msal.2.19.3.nupkg.sha512",
     "C:\\Users\\OnesiUmoize\\.nuget\\packages\\microsoft.identitymodel.abstractions\\6.24.0\\microsoft.identitymodel.abstractions.6.24.0.nupkg.sha512",
