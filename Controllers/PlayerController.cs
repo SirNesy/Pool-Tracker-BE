@@ -14,13 +14,13 @@ namespace PoolTrackerBackEnd.Controllers
         {
             _playerRepository = playerRepository;
         }
-        //[Route("allplayers")]
+
         [HttpGet]
-        public ActionResult<IEnumerable<Player>> GetAllPlayers()
+        public async Task<ActionResult<IEnumerable<Player>>> GetAllPlayers()
         {
             try
             {
-                var players = _playerRepository.GetAllPlayers();
+                var players = await _playerRepository.GetAllPlayersAsync();
                 return Ok(players);
             }
             catch (Exception ex)
@@ -30,11 +30,11 @@ namespace PoolTrackerBackEnd.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Player> CreatePlayer([FromBody] Player player)
+        public async Task<ActionResult<Player>> CreatePlayer([FromBody] Player player)
         {
             try
             {
-                _playerRepository.InsertPlayer(player);
+                await _playerRepository.InsertPlayerAsync(player);
                 return CreatedAtRoute("GetPlayerById", new { id = player.Id }, player);
             }
             catch (Exception ex)
@@ -44,17 +44,17 @@ namespace PoolTrackerBackEnd.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeletePlayer(int id)
+        public async Task<ActionResult> DeletePlayer(int id)
         {
             try
             {
-                var existingPlayer = _playerRepository.GetPlayerById(id);
+                var existingPlayer = await _playerRepository.GetPlayerByIdAsync(id);
                 if (existingPlayer == null)
                 {
                     return NotFound();
                 }
 
-                _playerRepository.DeletePlayer(id);
+                await _playerRepository.DeletePlayerAsync(id);
                 return NoContent();
             }
             catch (Exception ex)
@@ -64,17 +64,17 @@ namespace PoolTrackerBackEnd.Controllers
         }
 
         [HttpPut("{id}/increase-win")]
-        public ActionResult IncreaseWin(int id)
+        public async Task<ActionResult> IncreaseWin(Player player)
         {
             try
             {
-                var existingPlayer = _playerRepository.GetPlayerById(id);
+                var existingPlayer = await _playerRepository.GetPlayerByIdAsync(player.Id);
                 if (existingPlayer == null)
                 {
                     return NotFound();
                 }
 
-                _playerRepository.IncreaseWin(id);
+                await _playerRepository.IncreaseWinAsync(player);
                 return Ok();
             }
             catch (Exception ex)
@@ -84,17 +84,17 @@ namespace PoolTrackerBackEnd.Controllers
         }
 
         [HttpPut("{id}/decrease-win")]
-        public ActionResult DecreaseWin(int id)
+        public async Task<ActionResult> DecreaseWin(Player player)
         {
             try
             {
-                var existingPlayer = _playerRepository.GetPlayerById(id);
+                var existingPlayer = await _playerRepository.GetPlayerByIdAsync(player.Id);
                 if (existingPlayer == null)
                 {
                     return NotFound();
                 }
 
-                _playerRepository.DecreaseWin(id);
+                await _playerRepository.DecreaseWinAsync(player);
                 return Ok();
             }
             catch (Exception ex)
@@ -104,17 +104,17 @@ namespace PoolTrackerBackEnd.Controllers
         }
 
         [HttpPut("{id}/increase-loss")]
-        public ActionResult IncreaseLoss(int id)
+        public async Task<ActionResult> IncreaseLoss(Player player)
         {
             try
             {
-                var existingPlayer = _playerRepository.GetPlayerById(id);
+                var existingPlayer = await _playerRepository.GetPlayerByIdAsync(player.Id);
                 if (existingPlayer == null)
                 {
                     return NotFound();
                 }
 
-                _playerRepository.IncreaseLoss(id);
+                await _playerRepository.IncreaseLossAsync(player);
                 return Ok();
             }
             catch (Exception ex)
@@ -124,17 +124,17 @@ namespace PoolTrackerBackEnd.Controllers
         }
 
         [HttpPut("{id}/decrease-loss")]
-        public ActionResult DecreaseLoss(int id)
+        public async Task<ActionResult> DecreaseLoss(Player player)
         {
             try
             {
-                var existingPlayer = _playerRepository.GetPlayerById(id);
+                var existingPlayer = await _playerRepository.GetPlayerByIdAsync(player.Id);
                 if (existingPlayer == null)
                 {
                     return NotFound();
                 }
 
-                _playerRepository.DecreaseLoss(id);
+                await _playerRepository.DecreaseLossAsync(player);
                 return Ok();
             }
             catch (Exception ex)

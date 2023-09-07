@@ -20,25 +20,49 @@ namespace PoolTrackerBackEnd.Repository
             _dbConnection = new SqlConnection(connectionString);
         }
 
-        public List<Player> GetAllPlayers()
+        public async Task<List<Player>> GetAllPlayersAsync()
         {
-            var players  = _dbConnection.Query<Player>("SELECT * FROM MegaClass.Players").ToList();
-            return players;
-            //return _dbConnection.Query<Player>("SELECT * FROM Players").ToList();
+            var players = await _dbConnection.QueryAsync<Player>("SELECT * FROM MegaClass.Players");
+            return players.AsList();
         }
-        public void InsertPlayer(Player player) => _dbConnection.Execute("INSERT INTO Players (Name, Win, Loss) VALUES (@Name, @Win, @Loss)", player);
 
-        public Player GetPlayerById(int id) => _dbConnection.QuerySingleOrDefault<Player>("SELECT * FROM Players WHERE Id = @Id", new { Id = id });
-        
-        public void DeletePlayer(int id) => _dbConnection.Execute("DELETE FROM Players WHERE Id = @Id", new { Id = id });
+        //player.Points = (player.Win* 3) + player.Loss;
+        public async Task InsertPlayerAsync(Player player)
+        {
+            await _dbConnection.ExecuteAsync("INSERT INTO MegaClass.Players (Name, Win, Loss) VALUES (@Name, @Win, @Loss)", player);
+        }
 
-        public void IncreaseWin(int playerId) => _dbConnection.Execute("UPDATE Players SET Win = Win + 1 WHERE Id = @Id", new { Id = playerId });
+        public async Task<Player> GetPlayerByIdAsync(int id)
+        {
+            return await _dbConnection.QuerySingleOrDefaultAsync<Player>("SELECT * FROM MegaClass.Players WHERE Id = @Id", new { Id = id });
+        }
 
-        public void DecreaseWin(int playerId) => _dbConnection.Execute("UPDATE Players SET Win = Win - 1 WHERE Id = @Id AND Win > 0", new { Id = playerId });
+        public async Task DeletePlayerAsync(int id)
+        {
+            await _dbConnection.ExecuteAsync("DELETE FROM MegaClass.Players WHERE Id = @Id", new { Id = id });
+        }
 
-        public void IncreaseLoss(int playerId) => _dbConnection.Execute("UPDATE Players SET Loss = Loss + 1 WHERE Id = @Id", new { Id = playerId });
+        public async Task IncreaseWinAsync(Player player)
+        {
+            player.Points = (player.Win + 1) * 3 + player.Loss;
+            await _dbConnection.ExecuteAsync("UPDATE MegaClass.Players SET Name = @Name, Win = @Win, Loss = @Loss, Points = @Points WHERE Id = @Id", player);
+        }
 
-        public void DecreaseLoss(int playerId) => _dbConnection.Execute("UPDATE Players SET Loss = Loss - 1 WHERE Id = @Id AND Loss > 0", new { Id = playerId });
+        public async Task DecreaseWinAsync(Player player)
+        {
+            await _dbConnection.ExecuteAsync("UPDATE MegaClass.Players SET Win = Win - 1 WHERE Id = @Id AND Win > 0", player);
+        }
 
+        public async Task IncreaseLossAsync(Player player)
+        {
+            await _dbConnection.ExecuteAsync("UPDATE MegaClass.Players SET Loss = Loss + 1 WHERE Id = @Id", player);
+        }
+
+        public async Task DecreaseLossAsync(Player player)
+        {
+            await _dbConnection.ExecuteAsync("UPDATE MegaClass.Players SET Loss = Loss - 1 WHERE Id = @Id AND Loss > 0", player);
+        }
+
+     
     }
 }
