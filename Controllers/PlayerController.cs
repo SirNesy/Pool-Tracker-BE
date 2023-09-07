@@ -34,8 +34,36 @@ namespace PoolTrackerBackEnd.Controllers
         {
             try
             {
-                await _playerRepository.InsertPlayerAsync(player);
-                return CreatedAtRoute("GetPlayerById", new { id = player.Id }, player);
+               // await _playerRepository.InsertPlayerAsync(player);
+               // return CreatedAtRoute("GetPlayerById", new { id = player.Id }, player);
+
+                var insertedPlayer = await _playerRepository.InsertPlayerAsync(player);
+
+                if (insertedPlayer == null)
+                {
+                    return BadRequest("Failed to insert player."); 
+                }
+
+                return Ok(insertedPlayer); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpGet("{id}", Name = "GetPlayerById")]
+        public async Task<ActionResult<Player>> GetPlayerById(int id)
+        {
+            try
+            {
+                var player = await _playerRepository.GetPlayerByIdAsync(id);
+                if (player == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(player);
             }
             catch (Exception ex)
             {
@@ -64,17 +92,17 @@ namespace PoolTrackerBackEnd.Controllers
         }
 
         [HttpPut("{id}/increase-win")]
-        public async Task<ActionResult> IncreaseWin(Player player)
+        public async Task<ActionResult<Player>> IncreaseWin(int id)
         {
             try
             {
-                var existingPlayer = await _playerRepository.GetPlayerByIdAsync(player.Id);
+                var existingPlayer = await _playerRepository.GetPlayerByIdAsync(id);
                 if (existingPlayer == null)
                 {
                     return NotFound();
                 }
 
-                await _playerRepository.IncreaseWinAsync(player);
+                await _playerRepository.IncreaseWinAsync(id);
                 return Ok();
             }
             catch (Exception ex)
@@ -84,17 +112,17 @@ namespace PoolTrackerBackEnd.Controllers
         }
 
         [HttpPut("{id}/decrease-win")]
-        public async Task<ActionResult> DecreaseWin(Player player)
+        public async Task<ActionResult> DecreaseWin(int id)
         {
             try
             {
-                var existingPlayer = await _playerRepository.GetPlayerByIdAsync(player.Id);
+                var existingPlayer = await _playerRepository.GetPlayerByIdAsync(id);
                 if (existingPlayer == null)
                 {
                     return NotFound();
                 }
 
-                await _playerRepository.DecreaseWinAsync(player);
+                await _playerRepository.DecreaseWinAsync(id);
                 return Ok();
             }
             catch (Exception ex)
@@ -104,17 +132,17 @@ namespace PoolTrackerBackEnd.Controllers
         }
 
         [HttpPut("{id}/increase-loss")]
-        public async Task<ActionResult> IncreaseLoss(Player player)
+        public async Task<ActionResult> IncreaseLoss(int id)
         {
             try
             {
-                var existingPlayer = await _playerRepository.GetPlayerByIdAsync(player.Id);
+                var existingPlayer = await _playerRepository.GetPlayerByIdAsync(id);
                 if (existingPlayer == null)
                 {
                     return NotFound();
                 }
 
-                await _playerRepository.IncreaseLossAsync(player);
+                await _playerRepository.IncreaseLossAsync(id);
                 return Ok();
             }
             catch (Exception ex)
@@ -124,17 +152,17 @@ namespace PoolTrackerBackEnd.Controllers
         }
 
         [HttpPut("{id}/decrease-loss")]
-        public async Task<ActionResult> DecreaseLoss(Player player)
+        public async Task<ActionResult> DecreaseLoss(int id)
         {
             try
             {
-                var existingPlayer = await _playerRepository.GetPlayerByIdAsync(player.Id);
+                var existingPlayer = await _playerRepository.GetPlayerByIdAsync(id);
                 if (existingPlayer == null)
                 {
                     return NotFound();
                 }
 
-                await _playerRepository.DecreaseLossAsync(player);
+                await _playerRepository.DecreaseLossAsync(id);
                 return Ok();
             }
             catch (Exception ex)
