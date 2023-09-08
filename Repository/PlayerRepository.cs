@@ -29,7 +29,7 @@ namespace PoolTrackerBackEnd.Repository
         
         public async Task<Player> InsertPlayerAsync(Player player)
         {
-            int playerId = await _dbConnection.ExecuteScalarAsync<int>("INSERT INTO MegaClass.Players (Name, Win, Loss) VALUES (@Name, @Win, @Loss)", player);
+            await _dbConnection.ExecuteScalarAsync<int>("INSERT INTO MegaClass.Players (Name, Win, Loss) VALUES (@Name, @Win, @Loss)", player);
             return player;
         }
 
