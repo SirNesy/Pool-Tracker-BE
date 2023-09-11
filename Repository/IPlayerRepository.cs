@@ -10,7 +10,7 @@ namespace PoolTrackerBackEnd.Repository
         Task<Player> GetPlayerByIdAsync(int id);
 
         // Update Player: Methods to increase and decrease Win and Loss 
-        Task IncreaseWinAsync(int id);
+        Task IncreaseWinAsync(int playerId);
         Task DecreaseWinAsync(int playerId);
         Task IncreaseLossAsync(int playerId);
         Task DecreaseLossAsync(int playerId);

@@ -34,9 +34,6 @@ namespace PoolTrackerBackEnd.Controllers
         {
             try
             {
-               // await _playerRepository.InsertPlayerAsync(player);
-               // return CreatedAtRoute("GetPlayerById", new { id = player.Id }, player);
-
                 var insertedPlayer = await _playerRepository.InsertPlayerAsync(player);
 
                 if (insertedPlayer == null)
